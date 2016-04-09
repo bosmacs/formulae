@@ -12,10 +12,14 @@ class OpenSubdiv < Formula
         #  -D NO_OMP=1 -D NO_TBB=1 -D NO_CUDA=1 -D NO_OPENCL=1 -D NO_CLEW=1 \
         #  -D GLFW_LOCATION="*YOUR GLFW INSTALL LOCATION*" \
         cmake_args = std_cmake_args
+        #cmake_args << "-DNO_TUTORIALS=1"  
+        #cmake_args << "-DNO_REGRESSION=1"       
+        cmake_args << "-DNO_MAYA=1"      
+        
         if build.with? "tbb"
-            cmake_args << "-D NO_TBB=0"
+            cmake_args << "-DNO_TBB=0"
         else
-            cmake_args << "-D NO_TBB=1"
+            cmake_args << "-DNO_TBB=1"
         end
         system "cmake", *cmake_args
         system "make"
